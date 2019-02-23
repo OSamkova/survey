@@ -1,0 +1,32 @@
+$TEAL       : rgb(0, 115, 115)
+$WHITE      : rgb(255, 255, 255)
+$GREY       : rgb(102, 102, 102)
+$LIGHT_GREY : rgb(221, 221, 221)
+
+html
+    height : 100%
+  
+    body
+        min-height  : 100%
+        height      : 100%
+
+        #root
+            height : 100%
+
+            .survey
+                @import survey
+
+            .question-images
+            	@import question-images
+
+            .question-dropdown
+            	@import question-dropdown
+
+            .question-radio
+                @import question-radio
+
+            .question-checkbox
+                @import question-checkbox
+
+            .question-buttons
+                @import question-buttons

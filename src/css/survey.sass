@@ -1,0 +1,107 @@
+&
+	height : 100%
+	padding : 24px
+	font:    
+	    family: 'Work Sans', sans-serif
+	    weight: 200
+
+	.questions-container
+		&.medium-screen
+			width : 700px
+
+	.question-title
+		padding : 8px 0
+		color : $GREY
+
+	.question-body
+		display 	: flex
+		flex-wrap 	: wrap
+		width 		: 100%
+		padding 	: 8px 0
+
+	.custom-button
+		border-radius : 4px
+		cursor : pointer
+		cursor : hand
+
+		.custom-button-text
+			padding 	: 4px
+			align-items : center
+			display 	: flex
+			flex-wrap 	: nowrap
+			justify-content: space-between
+			box-shadow 	: 0 0 2px rgba(0, 115, 115, 0.25)
+			background-color : rgba(0, 115, 115, 0.01)
+			border-radius : 4px
+			border-bottom : none
+
+	.custom-input-container
+		flex : 0 auto
+		padding: 8px 4px
+		display: flex
+		flex-wrap: nowrap
+		align-items: center
+		cursor: pointer
+		-webkit-user-select: none
+		-moz-user-select: none
+		-ms-user-select: none
+		user-select: none
+
+		/* Hide the browser's default radio button */
+		.custom-input:checked,
+		.custom-input:not(:checked)
+			position: absolute
+			left: -9999px
+
+		/* Style the label */
+		.custom-input:checked + .custom-label,
+		.custom-input:not(:checked) + .custom-label
+			position: relative
+			padding-left: 28px
+			cursor: pointer
+			display: inline-block
+			color: $GREY
+
+		/* Style the unchecked option */
+		.custom-input:checked + .custom-label:before,
+		.custom-input:not(:checked) + .custom-label:before
+			content: ''
+			position: absolute
+			left: 0
+			top: 0
+			width: 16px
+			height: 16px
+			border: 1px solid $LIGHT_GREY
+			background: $WHITE
+
+		/* Style the checked option */
+		.custom-input:checked + .custom-label:after,
+		.custom-input:not(:checked) + .custom-label:after 
+			content: ''
+			position: absolute
+			-webkit-transition: all 0.2s ease
+			transition: all 0.2s ease
+
+		.custom-input:not(:checked) + .custom-label:after 
+			opacity: 0
+			-webkit-transform: scale(0)
+			transform: scale(0)
+			
+		.custom-input:checked + .custom-label:after 
+			opacity: 1
+			-webkit-transform: scale(1)
+			transform: scale(1)
+	
+			
+
+
+
+
+
+
+
+
+
+
+
+
