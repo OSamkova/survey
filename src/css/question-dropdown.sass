@@ -10,7 +10,7 @@ $WIDTH : 180px
 			position 	: absolute
 			background 	: $WHITE
 			z-index 	: 10
-			box-shadow: 0 0 2px rgba(0, 115, 115, 0.25)
+			box-shadow: 0 0 2px $TEAL
 			width: inherit
 			margin-top: 4px
 			border-radius: 4px
@@ -18,12 +18,13 @@ $WIDTH : 180px
 			.dropdown-list-item
 				list-style-type : none
 				padding: 4px 8px
-				border-bottom: 1px dashed rgba(0, 115, 115, 0.10)
+				border-bottom: 1px dashed $LIGHT_GREY
 				display: flex
 				justify-content: space-between
 
 				&:hover
-					background : rgba(0, 115, 115, 0.02)
+					background : $MEDIUM_TEAL
+					color : $WHITE
 
 				&:last-child
 					border : none

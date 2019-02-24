@@ -220,7 +220,7 @@ export const questions = [
 	},
 	{
 		"title" 	: "What is it you most desire?",
-		"type" 		: "buttons",
+		"type" 		: "button",
 		"points" 	: 2,
 		"options" 	: [
 			{

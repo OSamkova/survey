@@ -2,46 +2,31 @@ import React from 'react';
 import Check from '../img/icons/Check';
 import QuestionDropdown from './QuestionDropdown';
 
-const getQuestion = (index, options, points, onSelect) => ({
-	radio 	: <QuestionRadio
+const getQuestion = (index, data, onSelect) => {
+	if(data.type === 'images') 
+		return <QuestionImage
 					index 	 = {index} 
-					options  = {options}
-					points   = {points}
-					onSelect = {onSelect}
-				/>,
-
-	images 	: <QuestionImage
-					index 	 = {index} 
-					options  = {options}
-					points   = {points}
-					onSelect = {onSelect}
-				/>,
-
-	dropdown: <QuestionDropdown
-					index 	 	= {index} 
-					options  	= {options}
-					points   	= {points}
-					onSelect 	= {onSelect}
-					headerTitle = {'Select an answer'}
-				/>,
-
-	checkbox: <QuestionCheckbox
-					index 	 = {index} 
-					options  = {options}
-					points   = {points}
-					onSelect = {onSelect}
-				/>,
-
-	buttons : <QuestionButtons
-					index 	 = {index} 
-					options  = {options}
-					points   = {points}
+					data     = {data}
 					onSelect = {onSelect}
 				/>
-});
+
+	if(data.type === 'dropdown') 
+		return <QuestionDropdown
+					index 	 = {index} 
+					data     = {data}
+					onSelect = {onSelect}
+					headerTitle = {'Select an answer'}
+				/>
+
+	return <QuestionCustomInput
+					index 	 = {index} 
+					data     = {data}
+					onSelect = {onSelect}
+				/>
+}
 
 const Question = ({index, data, onSelect}) => {
-	const qs = getQuestion(index, data.options, data.points, onSelect)[data.type];
+	const qs = getQuestion(index, data, onSelect);
 	return (
 		<div className={`question question-${data.type}`}>
 			<div className='question-title'>
@@ -56,34 +41,15 @@ const Question = ({index, data, onSelect}) => {
 
 export default Question;
 
-const QuestionRadio = ({ index, options, points, onSelect }) => {
-	return options ? options.map((option, i) => {
-		return <div 
-					key 		= {i} 
-					className 	= 'custom-input-container question-body-radio-item' 
-					onClick 	= {() => onSelect(index, option.house, points)}
-				>	
-					<input
-						className 	= 'custom-input radio-item-input'
-						type 		= 'radio'
-						checked 	= { option.selected !== undefined ? option.selected : false }
-						onChange 	= {() => {}}
-					/>
-					<label className='custom-label radio-item-label'>
-						{option.title}
-					</label>
-				</div>
-	}) : null;
-}
-
-const QuestionImage = ({ index, options, points, onSelect }) => {
+const QuestionImage = ({ index, data, onSelect }) => {
+	let { options, points } = data;
 	return options ? options.map((option, i) => {
 		return <div key={i} className='question-body-image-item'>
-					<div className={`${option.selected ? 'selected' : ''} image-container`}>
+					<div className={ `${option.selected ? 'selected' : ''} image-container` }>
 						<img 
 							className 	= 'image-option' 
-							src 		= {option.url} 
-							onClick 	= {() => onSelect(index, option.house, points)}
+							src 		= { option.url } 
+							onClick 	= { () => onSelect(index, option.house, points) }
 						/>
 						<Check width={80} height={80}/>
 					</div>
@@ -91,39 +57,71 @@ const QuestionImage = ({ index, options, points, onSelect }) => {
 	}) : null;
 }
 
-const QuestionCheckbox = ({index, options, points, onSelect}) => {
+const QuestionCustomInput = ({ index, data, onSelect }) => {
+	let { options, points, type } = data;
+	const containerClass = `custom-${type === 'checkbox' || type === 'radio' ? 'input' : 'button'}-container question-body-${type}-item`;
+	const innerClass = `custom-${type === 'checkbox' || type === 'radio' ? 'input' : 'button'}-label ${type}-item-label`;
+
 	return options ? options.map((option, i) => {
 		return <div 
-					key 		= {i} 
-					className 	= { `custom-input-container question-body-checkbox-item ${option.selected === true ? 'selected' : ''}` }
-					onClick 	= {() => onSelect(index, option.house, points)}
-				>
-					<input
-						className 	= { `custom-input checkbox-item-input` }
-						type 		= 'checkbox'
-						checked 	= { option.selected !== undefined ? option.selected : false }
-						onChange 	= { () => {} }
-					/>
-					<label className='custom-label checkbox-item-label'>
+					key 		= { i } 
+					className 	= { `${containerClass} ${option.selected === true ? 'selected' : ''}` } 
+				>	
+					<span 
+						className 	= { innerClass }
+						onClick 	= { () => onSelect(index, option.house, points) }
+					>
 						{ option.title }
-					</label>
+					</span>
 				</div>
 	}) : null;
 }
 
-const QuestionButtons = ({index, options, points, onSelect}) => {
-	return options ? options.map((option, i) => {
-		return <div 
-					key 		= {i} 
-					className 	= 'question-body-buttons-item custom-button'
-				>
-					<div 
-						className 	= 'custom-button-text'
-						onClick 	= { () => onSelect(index, option.house, points) }
-					>
-						{ option.title }
-					</div>
-				</div>
-	}) : null;
-}
+// const QuestionRadio = ({ index, options, points, onSelect }) => {
+// 	return options ? options.map((option, i) => {
+// 		return <div 
+// 					key 		= {i} 
+// 					className 	= { `custom-input-container question-body-radio-item ${option.selected === true ? 'selected' : ''}` } 
+// 				>	
+// 					<span 
+// 						className 	= 'custom-label radio-item-label'
+// 						onClick 	= {() => onSelect(index, option.house, points)}
+// 					>
+// 						{option.title}
+// 					</span>
+// 				</div>
+// 	}) : null;
+// }
+
+// const QuestionCheckbox = ({index, options, points, onSelect}) => {
+// 	return options ? options.map((option, i) => {
+// 		return <div 
+// 					key 		= {i} 
+// 					className 	= { `custom-input-container question-body-checkbox-item ${option.selected === true ? 'selected' : ''}` }
+// 				>
+// 					<span 
+// 						className 	= 'custom-label checkbox-item-label'
+// 						onClick 	= {() => onSelect(index, option.house, points)}
+// 					>
+// 						{ option.title }
+// 					</span>
+// 				</div>
+// 	}) : null;
+// }
+
+// const QuestionButtons = ({index, options, points, onSelect}) => {
+// 	return options ? options.map((option, i) => {
+// 		return <div 
+// 					key 		= {i} 
+// 					className 	= 'question-body-buttons-item custom-button'
+// 				>
+// 					<span 
+// 						className 	= 'custom-button-text'
+// 						onClick 	= { () => onSelect(index, option.house, points) }
+// 					>
+// 						{ option.title }
+// 					</span>
+// 				</div>
+// 	}) : null;
+// }
 
