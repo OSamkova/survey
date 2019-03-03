@@ -4,6 +4,22 @@ $WIDTH : 180px
 	.dropdown-container
 		width 	: $WIDTH
 
+		&.selected
+			.arrow
+				border: solid $WHITE
+				border-width: 0 2px 2px 0
+
+		.dropdown-header
+			display: flex
+			flex-wrap: nowrap
+			justify-content: space-between
+			align-items: center
+			
+			&:hover
+				.arrow
+					border: solid $WHITE
+					border-width: 0 2px 2px 0
+
 		.dropdown-list
 			margin : 0
 			padding : 0

@@ -2,8 +2,9 @@
 	height : 100%
 	padding : 24px
 	font:    
-	    family: 'Work Sans', sans-serif
-	    weight: 200
+	    family 	: 'Work Sans', sans-serif
+	    weight 	: 200
+	    size 	: 16px
 
 	.questions-container
 		&.medium-screen
@@ -19,19 +20,24 @@
 		width 		: 100%
 		padding 	: 8px 0
 
+	.submit-button-container
+		display : flex
+		align-items: center
+		justify-content: center
+
 	.custom-button-container
 		border-radius : 4px
 		padding : 8px
 		cursor : pointer
 		cursor : hand
+		max-width: 200px
+		min-width: 100px
 
 		.custom-button-label
+			text-align 	: center
 			padding 	: 4px
 			color 		: $MEDIUM_GREY
-			display 	: flex
-			flex-wrap 	: nowrap
-			align-items : center
-			justify-content: space-between
+			display 	: block
 			box-shadow 	: 0 0 2px $TEAL
 			background-color : $LIGHT_TEAL
 			border-radius : 4px
@@ -59,11 +65,17 @@
 
 
 		.custom-input-label
+			min-height : 24px
 			position: relative
 			padding-left: 28px
 			cursor: pointer
 			display: inline-block
 			color: $GREY
+			-webkit-transition: all 0.2s ease
+			transition: all 0.2s ease
+
+			&:hover
+				font-size : 20px
 
 		.custom-input-label:before
 			content: ''

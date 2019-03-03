@@ -1,7 +1,5 @@
 import React from 'react';
 import Check from '../img/icons/Check';
-import SortUp from '../img/icons/SortUp';
-import SortDown from '../img/icons/SortDown';
 
 class QuestionDropdown extends React.Component {
 	constructor(props) {
@@ -56,11 +54,8 @@ class QuestionDropdown extends React.Component {
 							className 	= 'dropdown-header custom-button-label' 
 							onClick 	= { () => this.toggleList() }
 						>
-							<div className='dropdown-header-title'>{headerTitle}</div>
-							{ listOpen 
-								? <SortUp width={15} height={15} /> 
-								: <SortDown width={15} height={15} /> 
-							}
+							<span className='dropdown-header-title'>{headerTitle}</span>
+							<span className='arrow-container'><i className={ `arrow ${listOpen ? 'up' : 'down'}` }/></span>
 						</div>
 						{ listOpen && <ul className='dropdown-list'>
 							{ options && options.map((option, i) => {

@@ -50,6 +50,7 @@ const QuestionImage = ({ index, data, onSelect }) => {
 							className 	= 'image-option' 
 							src 		= { option.url } 
 							onClick 	= { () => onSelect(index, option.house, points) }
+							alt 		= ''
 						/>
 						<Check width={80} height={80}/>
 					</div>
@@ -76,52 +77,3 @@ const QuestionCustomInput = ({ index, data, onSelect }) => {
 				</div>
 	}) : null;
 }
-
-// const QuestionRadio = ({ index, options, points, onSelect }) => {
-// 	return options ? options.map((option, i) => {
-// 		return <div 
-// 					key 		= {i} 
-// 					className 	= { `custom-input-container question-body-radio-item ${option.selected === true ? 'selected' : ''}` } 
-// 				>	
-// 					<span 
-// 						className 	= 'custom-label radio-item-label'
-// 						onClick 	= {() => onSelect(index, option.house, points)}
-// 					>
-// 						{option.title}
-// 					</span>
-// 				</div>
-// 	}) : null;
-// }
-
-// const QuestionCheckbox = ({index, options, points, onSelect}) => {
-// 	return options ? options.map((option, i) => {
-// 		return <div 
-// 					key 		= {i} 
-// 					className 	= { `custom-input-container question-body-checkbox-item ${option.selected === true ? 'selected' : ''}` }
-// 				>
-// 					<span 
-// 						className 	= 'custom-label checkbox-item-label'
-// 						onClick 	= {() => onSelect(index, option.house, points)}
-// 					>
-// 						{ option.title }
-// 					</span>
-// 				</div>
-// 	}) : null;
-// }
-
-// const QuestionButtons = ({index, options, points, onSelect}) => {
-// 	return options ? options.map((option, i) => {
-// 		return <div 
-// 					key 		= {i} 
-// 					className 	= 'question-body-buttons-item custom-button'
-// 				>
-// 					<span 
-// 						className 	= 'custom-button-text'
-// 						onClick 	= { () => onSelect(index, option.house, points) }
-// 					>
-// 						{ option.title }
-// 					</span>
-// 				</div>
-// 	}) : null;
-// }
-

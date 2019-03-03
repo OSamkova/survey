@@ -3,14 +3,12 @@ import { createStore } from 'redux';
 // import the root reducer
 import rootReducer from './reducers/reducers';
 
-import { results } from './data/results';
-import { questions } from './data/questions';
-import { intro }     from './data/intro';
+import { survey } from './data/survey';
 
 const defaultState = {
-	results,
-	questions,
-	intro
+	results 	: survey.results,
+	questions 	: survey.questions,
+	intro 		: survey.intro
 };
 
 const store = createStore(rootReducer, defaultState);

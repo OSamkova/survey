@@ -5,6 +5,7 @@ import * as actionCreators from '../actions/actionCreators';
 import Survey 	from './Survey';
 
 const mapStateToProps = (state) => ({
+	results   : state.results,
 	questions : state.questions,
 	intro 	  : state.intro
 })
