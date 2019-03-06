@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Route, BrowserRouter } from 'react-router-dom';
 import App from './components/App';
+import SurveyResult from './components/SurveyResult';
 import * as serviceWorker from './serviceWorker';
 
 import store 	from './store';
@@ -14,6 +15,7 @@ const router = (
 		<BrowserRouter>
 			<div>
 				<Route exact path="/" component={App} />
+				<Route exact path="/result" component={SurveyResult} />
 			</div>
 		</BrowserRouter>
 	</Provider>

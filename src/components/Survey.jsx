@@ -1,9 +1,13 @@
 import React from 'react';
 import Question from './Question';
+import SurveyResult from './SurveyResult';
 
 class Survey extends React.Component {
 	constructor(props) {
         super(props);
+        this.state = {
+        	error: ''
+        }
     }
 
     validate(selected) {
@@ -17,6 +21,7 @@ class Survey extends React.Component {
 
     onSelect(index, house, points) {
     	this.props.selectOption(index, house, points);
+    	this.setState({ error: '' });
     }
 
     onSubmit() {
@@ -25,8 +30,11 @@ class Survey extends React.Component {
     		return { ...question, options }
     	});
 
-    	if(this.validate(selected))
+    	if(this.validate(selected)) {
     		this.props.submit(selected);
+    	} else {
+    		this.setState({ error: 'You\'re not done with the quiz! Please complete all questions.'})
+    	}
     }
 
 	render() {
@@ -54,6 +62,11 @@ class Survey extends React.Component {
 				<div className='questions-container medium-screen'>
 					{items}
 				</div>
+
+				<div className={ `error-container ${this.state.error.length > 0 ? 'active' : ''}` } >
+					{this.state.error}
+				</div>
+
 				<div className='submit-button-container'>
 					<div 
 						className = 'custom-button-container'
@@ -62,17 +75,7 @@ class Survey extends React.Component {
 						<span className='custom-button-label'>Submit</span>
 					</div>
 				</div>
-				{ results && results.final
-					? <div className='result-container'>
-							<div className='result-title'>
-								{results.final.title}
-							</div>
-							<div className='result-body'>
-								{results.final.description}
-							</div>
-						</div>
-					: null
-				}
+				<SurveyResult results={results} />
 			</div>
 		)
 	}
