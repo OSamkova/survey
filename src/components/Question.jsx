@@ -3,7 +3,6 @@ import Check from '../img/icons/Check';
 import QuestionDropdown from './QuestionDropdown';
 
 const getQuestion = (index, data, onSelect) => {
-	// data.options.sort(() => 0.5 - Math.random());
 	if(data.type === 'images') 
 		return <QuestionImage
 					index 	 = {index} 
