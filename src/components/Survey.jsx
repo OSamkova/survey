@@ -40,7 +40,7 @@ class Survey extends React.Component {
 	render() {
 		const { questions, intro, results } = this.props;
 
-		questions.sort(() => 0.5 - Math.random());
+		// questions.sort(() => 0.5 - Math.random());
 
 		const items = questions && questions.map((data, index) => 
 			<Question 
