@@ -6,8 +6,30 @@ class Survey extends React.Component {
 	constructor(props) {
         super(props);
         this.state = {
-        	error: ''
+        	error: '',
+        	questions: []
         }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+    	if(prevProps !== this.props) {
+	    	const questions = this.state.questions && this.state.questions.map(question => {
+	    		const found = this.props.questions.find(q => q.title === question.title);
+	    		question.options = found !== undefined ? found.options : questions.options;
+	    		return question;
+	    	});
+
+    		this.setState({ questions });
+    	}
+    }
+
+    componentDidMount() {
+    	const questions = this.props.questions.sort(() => 0.5 - Math.random());
+    	questions.forEach(question => {
+    		question && question.options && question.options.sort(() => 0.5 - Math.random());
+    	});
+    	
+    	this.setState({ questions });
     }
 
     validate(selected) {
@@ -38,7 +60,8 @@ class Survey extends React.Component {
     }
 
 	render() {
-		const { questions, intro, results } = this.props;
+		const { intro, results } = this.props;
+		const { questions } = this.state;
 
 		// questions.sort(() => 0.5 - Math.random());
 
