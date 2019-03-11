@@ -40,6 +40,9 @@ class Survey extends React.Component {
 	render() {
 		const { questions, intro, results } = this.props;
 
+		questions.sort(() => 0.5 - Math.random());
+		console.log(questions);
+
 		const items = questions && questions.map((data, index) => 
 			<Question 
 				index 	= { index }
@@ -51,7 +54,7 @@ class Survey extends React.Component {
 
 		return (
 			<div className='survey'>
-				<div className='into-container'>
+				<div className='intro-container'>
 					<div className='intro-title'>
 						{intro.title}
 					</div>
