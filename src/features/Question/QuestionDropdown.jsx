@@ -1,5 +1,5 @@
 import React from 'react';
-import Check from '../img/icons/Check';
+import Check from '../../img/icons/Check';
 
 class QuestionDropdown extends React.Component {
 	constructor(props) {

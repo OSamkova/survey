@@ -1,9 +1,4 @@
 export const survey = {
-	"intro": {
-		"title" : "In Which 'Game of Thrones' House Do You Belong?",
-		"subtitle" : "Learn where your allegiance lies!"
-	},
-
 	"questions": [
 		{
 			"title" 	: "Which castle would you enjoy calling home?",

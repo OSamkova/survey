@@ -1,35 +1,14 @@
 import React from 'react';
-import Question from './Question';
-import SurveyResult from './SurveyResult';
+import Question from '../Question/Question';
+import { connect } from 'react-redux';
+import * as Actions from '../../_actions/actionCreators';
 
 class Survey extends React.Component {
 	constructor(props) {
         super(props);
         this.state = {
-        	error: '',
-        	questions: []
+        	error: ''
         }
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-    	if(prevProps !== this.props) {
-	    	const questions = this.state.questions && this.state.questions.map(question => {
-	    		const found = this.props.questions.find(q => q.title === question.title);
-	    		question.options = found !== undefined ? found.options : questions.options;
-	    		return question;
-	    	});
-
-    		this.setState({ questions });
-    	}
-    }
-
-    componentDidMount() {
-    	const questions = this.props.questions.sort(() => 0.5 - Math.random());
-    	questions.forEach(question => {
-    		question && question.options && question.options.sort(() => 0.5 - Math.random());
-    	});
-    	
-    	this.setState({ questions });
     }
 
     validate(selected) {
@@ -42,7 +21,7 @@ class Survey extends React.Component {
     }
 
     onSelect(index, house, points) {
-    	this.props.selectOption(index, house, points);
+    	this.props.dispatch(Actions.selectOption(index, house, points));
     	this.setState({ error: '' });
     }
 
@@ -53,17 +32,15 @@ class Survey extends React.Component {
     	});
 
     	if(this.validate(selected)) {
-    		this.props.submit(selected);
+    		this.props.dispatch(Actions.submit(selected));
     	} else {
     		this.setState({ error: 'You\'re not done with the quiz! Please complete all questions.'})
     	}
     }
 
 	render() {
-		const { intro, results } = this.props;
-		const { questions } = this.state;
-
-		// questions.sort(() => 0.5 - Math.random());
+		// const { intro, results } = this.props;
+		const { questions } = this.props;
 
 		const items = questions && questions.map((data, index) => 
 			<Question 
@@ -77,11 +54,11 @@ class Survey extends React.Component {
 		return (
 			<div className='survey'>
 				<div className='intro-container'>
-					<div className='intro-title'>
-						{intro.title}
+					<div className='intro title'>
+						In Which 'Game of Thrones' House Do You Belong?
 					</div>
-					<div className='intro-subtitle'>
-						{intro.subtitle}
+					<div className='intro subtitle'>
+						Learn where your allegiance lies!
 					</div>
 				</div>
 				<div className='questions-container medium-screen'>
@@ -100,10 +77,18 @@ class Survey extends React.Component {
 						<span className='custom-button-label'>Submit</span>
 					</div>
 				</div>
-				<SurveyResult results={results} />
 			</div>
 		)
 	}
 }
 
-export default Survey;
+function mapStateToProps(state) {
+    const { questions } = state;
+    return {
+        questions
+    };
+}
+
+const connectedSurvey = connect(mapStateToProps)(Survey);
+export { connectedSurvey as Survey }; 
+

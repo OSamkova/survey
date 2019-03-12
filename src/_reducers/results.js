@@ -1,4 +1,5 @@
 import cloneDeep from 'lodash/cloneDeep';
+import { SUBMIT } from '../_constants/constants';
 
 const refresh = (result) => {
 	Object.keys(result).forEach(house => {
@@ -6,9 +7,9 @@ const refresh = (result) => {
 	})
 }
 
-const questions = (state = [], action) => {
+const results = (state = [], action) => {
 	switch(action.type) {
-		case 'SUBMIT' :
+		case SUBMIT :
 			const { selected } = action;
 			let result = cloneDeep(state);
 			refresh(result);
@@ -26,7 +27,7 @@ const questions = (state = [], action) => {
 			const house = Object.keys(result).reduce((a, b) => result[a].total > result[b].total ? a : b);
 
 			result.final = result[house];
-
+			console.log(result)
 			return result;
      
 		default:
@@ -34,4 +35,4 @@ const questions = (state = [], action) => {
 	}
 }
 
-export default questions;
+export default results;

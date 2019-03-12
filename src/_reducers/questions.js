@@ -1,6 +1,8 @@
-function questions(state = [], action) {
+import { SELECT_OPTION } from '../_constants/constants';
+
+function questions(state = {}, action) {
     switch(action.type) {
-        case 'SELECT_OPTION' :
+        case SELECT_OPTION :
             const {index, house} = action;
             let options = state[index] && state[index].options ? state[index].options.map(option => {
                 return {...option, selected: option.house === house ? true : false };

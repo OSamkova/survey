@@ -1,5 +1,5 @@
 import React from 'react';
-import Check from '../img/icons/Check';
+import Check from '../../img/icons/Check';
 import QuestionDropdown from './QuestionDropdown';
 
 const getQuestion = (index, data, onSelect) => {
@@ -19,10 +19,10 @@ const getQuestion = (index, data, onSelect) => {
 				/>
 
 	return <QuestionCustomInput
-					index 	 = {index} 
-					data     = {data}
-					onSelect = {onSelect}
-				/>
+				index 	 = {index} 
+				data     = {data}
+				onSelect = {onSelect}
+			/>
 }
 
 const Question = ({index, data, onSelect}) => {

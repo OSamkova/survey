@@ -7,33 +7,23 @@ $MEDIUM_GREY    : rgb(125, 125, 125)
 $LIGHT_GREY     : rgb(204, 204, 204)
 $RED            : rgb(139, 0, 0)
 
-html
-    height : 100%
-  
-    body
-        min-height  : 100%
-        height      : 100%
+.survey
+    @import survey
 
-        #root
-            height : 100%
+.question-images
+	@import question-images
 
-            .survey
-                @import survey
+.question-radio
+    @import question-radio
 
-            .question-images
-            	@import question-images
+.question-checkbox
+    @import question-checkbox
 
-            .question-radio
-                @import question-radio
+.question-button
+    @import question-button
 
-            .question-checkbox
-                @import question-checkbox
+.question-dropdown
+    @import question-dropdown
 
-            .question-button
-                @import question-button
-
-            .question-dropdown
-                @import question-dropdown
-
-            .arrow-container
-                @import arrow-container
+.arrow-container
+    @import arrow-container
