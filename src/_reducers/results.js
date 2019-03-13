@@ -27,7 +27,7 @@ const results = (state = [], action) => {
 			const house = Object.keys(result).reduce((a, b) => result[a].total > result[b].total ? a : b);
 
 			result.final = result[house];
-			console.log(result)
+
 			return result;
      
 		default:

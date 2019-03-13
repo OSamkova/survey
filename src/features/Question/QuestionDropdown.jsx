@@ -12,10 +12,12 @@ class QuestionDropdown extends React.Component {
 		this.handleClickOutside = this.handleClickOutside.bind( this );
 		this.toggleList = this.toggleList.bind( this );
 		this.selectItem = this.selectItem.bind( this );
+		this.setTitle 	= this.setTitle.bind( this );
     }
 
     componentDidMount() {
         document.addEventListener('click', this.handleClickOutside, true);
+        this.setTitle();  
     }
 
     componentWillUnmount() {
@@ -29,6 +31,17 @@ class QuestionDropdown extends React.Component {
                 this.setState({ listOpen: false });
             }
         }
+	}
+
+	setTitle() {
+		const { data } = this.props;
+        const { options } = data;
+        const found = options.findIndex( option => option.selected === true);
+        if( found !== -1 ) 
+        	this.setState({ 
+        		headerTitle: options[found].title,
+        		selected : true 
+        	});
 	}
 
 	toggleList() {

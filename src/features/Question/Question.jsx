@@ -9,7 +9,7 @@ const getQuestion = (index, data, onSelect) => {
 					data     = {data}
 					onSelect = {onSelect}
 				/>
-
+	
 	if(data.type === 'dropdown') 
 		return <QuestionDropdown
 					index 	 = {index} 

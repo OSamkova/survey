@@ -100,7 +100,7 @@ export const survey = {
 			"points"	: 2,
 			"options" 	: [
 				{
-					"title" : "Demented",
+					"title" : "Angry",
 					"house" : "Bolton"
 				},
 				{

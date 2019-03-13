@@ -13,6 +13,7 @@ class App extends React.Component {
                 <Switch>
                     <Route exact path="/" component={Survey}/>
                     <PrivateRoute path="/result" component={SurveyResult} />
+                    <Route path="/question" component={Survey}></Route>
                 </Switch>
             </Router>
         );
