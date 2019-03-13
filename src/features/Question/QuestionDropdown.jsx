@@ -62,7 +62,7 @@ class QuestionDropdown extends React.Component {
     	const { listOpen, headerTitle, selected } = this.state;
 
 		return (
-					<div className={ `dropdown-container custom-button-container ${selected ? 'selected' : ''}` } ref='dropdown'>
+					<div className={ `dropdown-container custom-button ${selected ? 'selected' : ''}` } ref='dropdown'>
 						<div 
 							className 	= 'dropdown-header custom-button-label' 
 							onClick 	= { () => this.toggleList() }

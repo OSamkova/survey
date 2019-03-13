@@ -7,10 +7,12 @@
 	    size 	: 16px
 
 	.intro-container
-		padding 	: 16px 8px
-		box-shadow 	: 0 0 2px $LIGHT_GREY
-		border-radius : 4px
-	
+		flex: 1 0 auto
+		display: flex
+		flex-direction: column
+		align-items: center
+		justify-content: center
+
 	.title
 		font:
 			size: 22px
@@ -47,12 +49,26 @@
 
 
 	.questions-container
+		padding 	: 16px 8px
+		box-shadow 	: 0 0 2px $LIGHT_GREY
+		border-radius : 4px
+		min-height : 500px
+		display: flex
+		flex-direction: column
+
+		.question
+			display: flex
+			min-height: 400px
+			flex-direction: column
+
 		&.medium-screen
 			width : 700px
 
 		.buttons-container
+			flex: 1 0 auto
 			display: flex
 			justify-content: space-between
+			align-items: flex-end
 
 	.question-title
 		font-weight : 600
@@ -64,17 +80,15 @@
 		justify-content : center
 		flex-wrap 	: wrap
 		width 		: 100%
-		padding 	: 16px 8px
-		box-shadow 	: 0 0 2px $LIGHT_GREY
-		border-radius : 4px
-
-	.submit-button-container
-		display : flex
-		align-items: center
-		justify-content: center
-		margin: 30px 0
 
 	.custom-button-container
+		&.submit
+			flex: 1 0 auto
+			display: flex
+			justify-content: center
+			align-items: flex-end
+
+	.custom-button
 		border-radius : 4px
 		padding : 8px
 		cursor : pointer
@@ -108,7 +122,7 @@
 				color : $WHITE
 				background-color : $TEAL
 
-	.custom-input-container
+	.custom-input
 		flex : 0 auto
 		padding: 8px
 		display: flex

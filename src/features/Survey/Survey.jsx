@@ -15,10 +15,10 @@ const Intro = () => (
 	</div>
 )
 
-const CustomButton = ({ onClick, title, active }) => (
-	<div className={'submit-button-container'}>
+const CustomButton = ({ onClick, title, active, name }) => (
+	<div className={`${name ? name : ''} custom-button-container`}>
 		<div 
-			className = 'custom-button-container'
+			className = 'custom-button'
 			onClick   = { active ? () => onClick() : null }
 		>
 			<span className={`custom-button-label ${active ? 'enabled' : 'disabled'}`}>{title}</span>
@@ -30,7 +30,6 @@ class Survey extends React.Component {
 	constructor(props) {
         super(props);
         this.state = {
-        	error 				: '',
         	questionIndex 		: -1,
         	questionComplete 	: false
         }
@@ -64,7 +63,6 @@ class Survey extends React.Component {
 
     onSelect(index, house, points) {
     	this.props.dispatch(Actions.selectOption(index, house, points));
-    	this.setState({ error: '' });
     }
 
     onSubmit() {
@@ -75,8 +73,6 @@ class Survey extends React.Component {
 
     	if(this.validate(selected)) {
     		this.props.dispatch(Actions.submit(selected));
-    	} else {
-    		this.setState({ error: 'You\'re not done with the quiz! Please complete all questions.'})
     	}
     }
 
@@ -105,6 +101,7 @@ class Survey extends React.Component {
 							title 	= 'Start'
 							onClick = { this.nextQuestion.bind(this) }
 							active  = { true }
+							name 	= 'submit'
 						/>
 					  </div>
 					: <div className='questions-container medium-screen'>
@@ -118,7 +115,8 @@ class Survey extends React.Component {
 								? <CustomButton
 										title 	= 'Submit'
 										onClick = { this.onSubmit.bind(this) }
-										active  = { true }
+										active  = { this.state.questionComplete }
+										name 	= 'submit'
 									/>
 								: <div className='buttons-container'>
 									<CustomButton

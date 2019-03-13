@@ -9,7 +9,7 @@ const getQuestion = (index, data, onSelect) => {
 					data     = {data}
 					onSelect = {onSelect}
 				/>
-	
+
 	if(data.type === 'dropdown') 
 		return <QuestionDropdown
 					index 	 = {index} 
@@ -60,7 +60,7 @@ const QuestionImage = ({ index, data, onSelect }) => {
 
 const QuestionCustomInput = ({ index, data, onSelect }) => {
 	let { options, points, type } = data;
-	const containerClass = `custom-${type === 'checkbox' || type === 'radio' ? 'input' : 'button'}-container question-body-${type}-item`;
+	const containerClass = `custom-${type === 'checkbox' || type === 'radio' ? 'input' : 'button'} question-body-${type}-item`;
 	const innerClass = `custom-${type === 'checkbox' || type === 'radio' ? 'input' : 'button'}-label ${type}-item-label`;
 
 	return options ? options.map((option, i) => {
