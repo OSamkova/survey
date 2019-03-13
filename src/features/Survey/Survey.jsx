@@ -7,7 +7,8 @@ class Survey extends React.Component {
 	constructor(props) {
         super(props);
         this.state = {
-        	error: ''
+        	error: '',
+        	questionIndex: 0
         }
     }
 
@@ -15,7 +16,7 @@ class Survey extends React.Component {
     	// are there any unanswered questions
     	const found = selected.findIndex( q => q.options.length === 0 );
 
-    	if( found !== -1 ) return false;
+    	// if( found !== -1 ) return false;
 
     	return true;
     }

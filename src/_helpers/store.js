@@ -4,7 +4,7 @@ import rootReducer from '../_reducers/reducers';
 import { survey } from '../data/survey';
 
 
-const questions = survey.questions ? survey.questions.sort(() => 0.5 - Math.random()) : [];
+const questions = survey.questions ? survey.questions : [];
 questions.forEach(question => {
 	question && question.options && question.options.sort(() => 0.5 - Math.random());
 });
