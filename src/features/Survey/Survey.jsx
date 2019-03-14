@@ -31,8 +31,14 @@ class Survey extends React.Component {
         super(props);
         this.state = {
         	questionIndex 		: -1,
-        	questionComplete 	: false
+        	questionComplete 	: false,
+        	width 				: window.innerWidth
         }
+        this.onResize = this.onResize.bind( this );
+    }
+
+    componentDidMount() {
+    	window.addEventListener('resize', this.onResize);
     }
 
     componentDidUpdate(prevProps, preState) {
@@ -50,6 +56,14 @@ class Survey extends React.Component {
     			this.setState({ questionComplete: false });
     		}
     	}
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.onResize);
+    }
+
+    onResize() {
+        this.setState({ width: window.innerWidth });
     }
 
     validate(selected) {
@@ -93,9 +107,9 @@ class Survey extends React.Component {
 		const { questionIndex } = this.state;
 
 		return (
-			<div className='survey'>
+			<div className={`survey ${this.state.width > 760 ? 'medium-screen' : 'small-screen'}`}>
 				{ questionIndex && questionIndex < 0
-					? <div className='questions-container medium-screen'>
+					? <div className='questions-container'>
 					 	<Intro /> 
 					 	<CustomButton
 							title 	= 'Start'
@@ -104,7 +118,7 @@ class Survey extends React.Component {
 							name 	= 'submit'
 						/>
 					  </div>
-					: <div className='questions-container medium-screen'>
+					: <div className='questions-container'>
 							<Question
 								index 	= { questionIndex }
 								data 	= { questions[questionIndex] }
